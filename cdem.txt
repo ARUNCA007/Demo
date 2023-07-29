@@ -1,0 +1,406 @@
+package Projectpkg;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+
+public class First_module1 {
+	WebDriver driver;							//web driver setting
+	@BeforeTest
+	public void setup()
+	{
+		driver = new FirefoxDriver();
+		
+	}
+	@BeforeMethod
+	public void loadurl()									//Loading URL
+	{
+		driver.get("https://www.snapdeal.com/");
+		
+	}
+	
+	//maximized the window
+	@Test(priority=0)
+	public void tets1maximize()
+	{
+		driver.manage().window().minimize();
+		driver.manage().window().maximize();
+		
+	}
+	
+	
+	//logo is present
+	@Test(priority=1)
+	public void logopresent()
+	{
+		boolean Display=driver.findElement(By.xpath("//*[@id=\"sdHeader\"]/div[4]/div[2]/div/div[1]/a[1]/img")).isDisplayed();
+			if(Display)
+			{
+				System.out.println("Logo is present");
+			}
+			else
+			{
+				System.out.println("LOgo is not present");
+			}
+	}
+	//link count
+	@Test(priority=2)
+	public void linkcount()
+	{
+			List<WebElement>li=driver.findElements(By.tagName("a"));
+			System.out.println("The total links in the site ="+li.size());
+
+	}
+	//Search bar value passing
+	@Test(priority=3)
+	public void searchboxvaluepass() throws InterruptedException
+	{
+		driver.findElement(By.xpath("//*[@id=\"inputValEnter\"]")).sendKeys("TShirts",Keys.ENTER);
+		Thread.sleep(3000);
+	}
+	//Move to element check by clicking on Mens Fashion
+	
+	
+	@Test(priority=4)
+	public void mensfashion() throws InterruptedException
+	{
+	
+		WebElement move=driver.findElement(By.xpath("/html/body/div[10]/div[3]/div/div[1]/div[2]/ul/li[1]/a/span[2]"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		WebElement move1=driver.findElement(By.xpath("/html/body/div[10]/div[3]/div/div[1]/div[2]/ul/li[1]/div/div[1]/div/div/p[2]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+		
+	}
+	//Move to element check by clicking on Women Fashion
+	@Test(priority=5)
+	public void womensfashion() throws InterruptedException
+	{
+		
+		WebElement move=driver.findElement(By.xpath("//*[@id=\"leftNavMenuRevamp\"]/div[1]/div[2]/ul/li[2]/a/span[2]"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		WebElement move1=driver.findElement(By.xpath("//*[@id=\"category2Data\"]/div[1]/div/div/p[2]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+	}
+	//Move to element check by clicking on Home&Kitchen 
+	@Test(priority=6)
+	public void homekitchen() throws InterruptedException
+	{
+		
+		WebElement move=driver.findElement(By.xpath("//*[@id=\"leftNavMenuRevamp\"]/div[1]/div[2]/ul/li[3]/a/span[2]"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		WebElement move1=driver.findElement(By.xpath("//*[@id=\"category3Data\"]/div[1]/div/div/p[2]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+	}
+	//Move to element check by clicking on Toy kids
+	@Test(priority=7)
+	public void toykids() throws InterruptedException
+	{
+		
+		WebElement move=driver.findElement(By.xpath("//*[@id=\"leftNavMenuRevamp\"]/div[1]/div[2]/ul/li[4]/a/span[2]"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		WebElement move1=driver.findElement(By.xpath("//*[@id=\"category4Data\"]/div[1]/div/div/p[2]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+	}
+	//Move to element check by clicking on Beauty
+	@Test(priority=8)
+	public void beauty() throws InterruptedException
+	{
+		
+		WebElement move=driver.findElement(By.xpath("//*[@id=\"leftNavMenuRevamp\"]/div[1]/div[2]/ul/li[5]/a/span[2]"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		WebElement move1=driver.findElement(By.xpath("//*[@id=\"category5Data\"]/div[1]/div/div/p[2]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+	}
+	
+	//Clicking on under image moving section whether working
+	@Test(priority=9)
+	public void underimagesection() throws InterruptedException
+	{
+		driver.findElement(By.xpath("//*[@id=\"content_wrapper\"]/section/section/div[1]/div[4]/div[1]")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id=\"content_wrapper\"]/section/section/div[1]/div[4]/div[2]")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id=\"content_wrapper\"]/section/section/div[1]/div[4]/div[3]")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id=\"content_wrapper\"]/section/section/div[1]/div[4]/div[4]")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id=\"content_wrapper\"]/section/section/div[1]/div[4]/div[5]")).click();
+		Thread.sleep(1000);
+	}
+	
+	//Clicking on cart section
+	@Test(priority=10)
+	public void test11cartclick() throws InterruptedException
+	{
+		driver.findElement(By.xpath("//*[@id=\"sdHeader\"]/div[4]/div[2]/div/div[3]/div[1]/div/i")).click();
+		Thread.sleep(2000);
+
+	}
+	
+	//click on Title showing
+	@Test(priority=11)
+	public void titleshowing()
+	{
+		String title=	driver.findElement(By.xpath("//*[@id=\"sdHeader\"]/div[4]/section/div/span[1]")).getText();
+	
+		System.out.println(title);
+	}
+	
+	//image of is present					BUG
+	@Test(priority=12)
+	public void imageispresent()
+	{
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+		
+		WebElement CampusFirstWhiteRunningShoes =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"centerCardWidgets\"]/section[1]/div[2]/div[1]/div/div[6]/a/div[2]/img")));
+		if(CampusFirstWhiteRunningShoes.isDisplayed())
+		{
+			System.out.println("the image is present");
+			System.out.println("the tesxt is present " + CampusFirstWhiteRunningShoes.getAttribute("alt"));
+		}
+		else
+		{
+			System.out.println("not present");
+				
+		
+		}
+	}
+	
+	//click on left top elements						BUG
+	// Impact@Snapdeal 
+	@Test(priority=13)
+	public void ImpactSnapdeal() throws InterruptedException
+	{
+		driver.findElement(By.xpath("/html/body/div[2]/div[4]/section/div/span[2]/span[1]/a")).click();
+		Thread.sleep(1000);
+	}
+	
+	//Giftcards
+	@Test(priority=14)
+	public void Giftcards() throws InterruptedException
+	{
+		driver.findElement(By.xpath("/html/body/div[2]/div[4]/section/div/span[2]/span[2]/a")).click();
+		Thread.sleep(1000);
+	}
+	
+	//Help center
+	@Test(priority=15)
+	public void Helpcenter() throws InterruptedException
+	{
+
+		driver.findElement(By.xpath("/html/body/div[2]/div[4]/section/div/span[2]/span[3]/a")).click();
+		Thread.sleep(1000);
+	}
+	
+	//sellon snapdeal
+	@Test(priority=16)
+	public void Sellonsnapdeal() throws InterruptedException
+	{
+		driver.findElement(By.xpath("/html/body/div[2]/div[4]/section/div/span[2]/span[4]/a")).click();
+		Thread.sleep(1000);
+	}
+	
+	//Download app
+	@Test(priority=17)
+	public void Downloadapp() throws InterruptedException
+	{
+		driver.findElement(By.xpath("/html/body/div[2]/div[4]/section/div/span[2]/span[5]/a")).click();
+		Thread.sleep(1000);
+	}
+		
+		
+	
+	
+	
+
+//check on more Categories
+	
+	//bug clicking on Automatives and clicking on car gps
+	@Test(priority=18)
+	public void morecategories() throws InterruptedException
+	{
+
+		WebElement move=driver.findElement(By.xpath("//*[@id=\"leftNavMenuRevamp\"]/div[1]/div[2]/ul/li[7]/a/span"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		Thread.sleep(3000);
+		WebElement move1=driver.findElement(By.xpath("/html/body/div[10]/div[3]/div/div[1]/div[2]/ul/li[7]/div/div[1]/div/div/p[6]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+	}
+	
+	//clicking on mobiles
+	@Test(priority=19)
+	public void mobiles() throws InterruptedException
+	{
+		WebElement move=driver.findElement(By.xpath("/html/body/div[10]/div[3]/div/div[1]/div[2]/ul/li[7]/a/span"));
+		Actions acts=new Actions(driver);
+		acts.moveToElement(move).perform();
+		Thread.sleep(3000);
+		WebElement move1=driver.findElement(By.xpath("//*[@id=\"category7Data\"]/div[2]/div/div/p[2]/a/span"));
+		acts.click(move1).perform();
+		Thread.sleep(3000);
+	}
+	
+	
+	//click on 100% Secure Payments
+	@Test(priority=20)
+	public void Securepayment() throws InterruptedException
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		 js.executeScript("window.scrollBy(0,1300)");
+		 Thread.sleep(2000);
+		 driver.findElement(By.xpath("/html/body/div[11]/div[1]/div/a[1]/div/div[2]/p[1]")).click();
+		 Thread.sleep(2000);
+		 
+	}
+	
+	//click on Trust Pay
+		@Test(priority=21)
+		public void Trustpay() throws InterruptedException
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			 js.executeScript("window.scrollBy(0,1300)");
+			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("/html/body/div[11]/div[1]/div/a[2]/div/div[2]/p[1]")).click();
+			 Thread.sleep(2000);
+			
+		}
+		
+		//click on Help Center
+		@Test(priority=22)
+		public void helpcenter() throws InterruptedException
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			 js.executeScript("window.scrollBy(0,1300)");
+			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("/html/body/div[11]/div[1]/div/a[3]/div/div[2]/p[1]")).click();
+			 Thread.sleep(2000);
+			 
+		}
+		
+		//click on Shop On The GO
+		@Test(priority=23)
+		public void shoponthego() throws InterruptedException
+		{
+//			JavascriptExecutor js = (JavascriptExecutor) driver;
+//			 js.executeScript("window.scrollBy(0,1300)");
+//			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("/html/body/div[11]/div[1]/div/a[4]/div/div[2]/p[1]")).click();
+			 Thread.sleep(2000);
+			 
+		}
+	
+	//values passing on subscribe and click on button
+	@Test(priority=24)
+	public void subscribe()
+	{
+		driver.findElement(By.xpath("/html/body/div[11]/div[2]/div[1]/div/div[5]/input")).sendKeys("asdhasijdha");
+		driver.findElement(By.xpath("/html/body/div[11]/div[2]/div[1]/div/div[5]/button")).click();
+	}
+	
+	
+	//back to Top Button  working
+	@Test(priority=25)
+	public void Backtotop() throws InterruptedException
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,2000)");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/div[10]/p/a/i")).click();
+		 
+	}	 
+	
+	
+	//Click on  the social media icons FB,Twitter etc...
+	@Test(priority=26)
+	public void facebook() throws InterruptedException
+	{
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		js.executeScript("window.scrollBy(0,2000)");
+//		Thread.sleep(1500);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[1]/img")).click();		//Facebook
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[2]/img")).click();		//Twitter
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[3]/img")).click();        //Instagram 
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[4]/img")).click();		//Linkedin
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[5]/img")).click();        //Youtube
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[6]/img")).click();        //telegram
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"sdFooter\"]/div[2]/div[2]/div/div[2]/div/a[7]/img")).click();        //Whatsapp
+		Thread.sleep(2000);
+		 
+	}
+	
+	//Click on pincode
+		@Test(priority=27)
+		public void pincode() throws InterruptedException
+		{
+			WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebElement pin=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[10]/section/section/div[2]/div/ul/li/div[4]/input")));
+			pin.sendKeys("679304");
+			WebElement submit=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[10]/section/section/div[2]/div/ul/li/div[7]/button[1]")));
+			submit.click();
+			WebElement next=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[10]/section/section/div[2]/div/ul/li/div[7]/button[2]/span")));
+			next.click();
+			
+			
+		}
+		
+		//next and back button on image side
+		@Test(priority=28)
+		public void nextbutton() throws InterruptedException
+		{
+			WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebElement next=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[10]/section/section/div[1]/div[2]/i[1]")));
+			next.click();
+			Thread.sleep(2000);
+			next.click();
+			Thread.sleep(2000);
+			next.click();
+			Thread.sleep(2000);
+			WebElement back=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[10]/section/section/div[1]/div[1]/i[1]")));
+			back.click();
+			Thread.sleep(2000);
+			back.click();
+			Thread.sleep(2000);
+			back.click();
+			Thread.sleep(2000);
+			
+		}
+		
+
+}	
+	
+			
+	
+	
+
+
